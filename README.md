@@ -9,7 +9,7 @@ FAI universidad nacional del comahue
 ## integrantes del grupo 
 
 # Bruno Alexis Peters# 
- legajo 3600 Mail : bruno.peters@est.fi.uncoma.edu.ar-usuario github: brunoalexispeters  
+ legajo 3600 - Mail : bruno.peters@est.fi.uncoma.edu.ar-usuario github: brunoalexispeters  
 
 =======
 PROYECTO php para jugar al tateti en INTRODUCCION A LA PROGRAMACION (IP)
@@ -21,6 +21,7 @@ FAI
 Universidad del Comahue
 
 ## Integrantes del grupo
- -**Luis Lopez**  Legajo FAI 3027 - mail: lucho38812@gmail.com - usuario github: lucholopez02
+#Luis Lopez#
+Legajo FAI 3027 - mail: lucho38812@gmail.com - usuario github: lucholopez02
 >>>>>>> main
 
