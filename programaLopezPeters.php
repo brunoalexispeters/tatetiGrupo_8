@@ -20,6 +20,7 @@ Puede ser utilizada por cualquier programador para incluir en sus programas.
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 /** 
+*FUNCION 1
 * inicializa una estructura de datos con ejemplos de juegos y que retorne la colección de juegos
 * @return array $juegosTotal
 */
@@ -37,6 +38,22 @@ function cargarJuegos (){
     $coleccionJuegos[9] = ["jugadorCruz"=> "PEDRO" , "jugadorCirculo" => "BRUNO", "puntosCruz"=> 5, "puntosCirculo" => 0];
     $coleccionJuegos[10] = ["jugadorCruz"=> "MIGUEL" , "jugadorCirculo" => "LUCHO", "puntosCruz"=> 0, "puntosCirculo" => 5];
     $coleccionJuegos[11] = ["jugadorCruz"=> "JUAN" , "jugadorCirculo" => "MIGUEL", "puntosCruz"=> 1, "puntosCirculo" => 1];
+
+    $coleccionJuegos = [];
+
+$jg1 = ["jugadorCruz" => "AMARILIS", "jugadorCirculo" => "MILOS",    "puntosCruz" => 1, "puntosCirculo" => 1];
+$jg2 = ["jugadorCruz" => "ZENDA",    "jugadorCirculo" => "AMARILIS", "puntosCruz" => 3, "puntosCirculo" => 0];
+$jg3 = ["jugadorCruz" => "ZENDA",    "jugadorCirculo" => "MILOS",    "puntosCruz" => 0, "puntosCirculo" => 4];
+$jg4 = ["jugadorCruz" => "CALIXTO",  "jugadorCirculo" => "TRUMAN",   "puntosCruz" => 1, "puntosCirculo" => 1];
+$jg5 = ["jugadorCruz" => "AMARILIS", "jugadorCirculo" => "MILOS",    "puntosCruz" => 5, "puntosCirculo" => 0];
+$jg6 = ["jugadorCruz" => "FEDORA",   "jugadorCirculo" => "CALIXTO",  "puntosCruz" => 0, "puntosCirculo" => 3];
+$jg7 = ["jugadorCruz" => "TRUMAN",   "jugadorCirculo" => "AMARILIS", "puntosCruz" => 4, "puntosCirculo" => 0];
+$jg8 = ["jugadorCruz" => "CALIXTO",  "jugadorCirculo" => "TRUMAN",   "puntosCruz" => 1, "puntosCirculo" => 1];
+$jg9 = ["jugadorCruz" => "TRUMAN",   "jugadorCirculo" => "FEDORA",   "puntosCruz" => 2, "puntosCirculo" => 0];
+$jg10= ["jugadorCruz" => "MILOS",    "jugadorCirculo" => "ZENDA",   "puntosCruz" => 1, "puntosCirculo" => 1];
+
+array_push($coleccionJuegos, $jg1, $jg2, $jg3, $jg4, $jg5, $jg6, $jg7, $jg8, $jg9, $jg10);
+
         return $coleccionJuegos;
 }
  
@@ -112,53 +129,10 @@ function agregarJuego ($juegosTotal,$juego){
 }
  
 
-/** 
- * auxiliar funcion 7
- * primera FUNCION PRIMER GANADOR N°2 
- * Este modulo pide el nombre de un jugador y recorre el arreglo parcialmente para verificar si existe en la coleccion. Retorna el nombre si existe
- *@param array $juegosTotal
- *@return string
- */
-function verificaJugadorExiste($juegosTotal){
-    //int $i
-    //String $nombre
-    //boolean $repetir
-    
-    //inicializacion
-    $i = 0;
-    $repetir = false;
-
-    echo"Ingrese el nombre de un Jugador: ";
-    //convierto el nobmre a mayusculas
-    $nombre= strtoupper(trim(fgets(STDIN)));
-    
-    do{
-    while(($juegosTotal[$i]["jugadorCruz"]!= $nombre && $juegosTotal[$i]["jugadorCirculo"] !=$nombre ) && $i < count($juegosTotal) ){
-        $i++;
-    }
-    if($juegosTotal[$i]["jugadorCruz"]== $nombre){
-        $nombre = $juegosTotal[$i]["jugadorCruz"];
-    }elseif ($juegosTotal[$i]["jugadorCirculo"]== $nombre) {
-        $nombre = $juegosTotal[$i]["jugadorCirculo"];
-    }else {
-       $nombre="nombre no valido";
-    } 
-    
-    if($i >= count($juegosTotal)){
-        echo"Este jugador No se encuentra en la colección de juegos, Por favor ingrese otro: "; 
-        $nombre= strtoupper(trim(fgets(STDIN)));
-        $i=0;
-        $repetir = true;
-    }
-    }while($repetir);
-
-    return $nombre;
-    }
 
 /** 
- * auxiliar funcion 7
- * segunda FUNCION PRIMER GANADOR N°2 
- * Funcion que retorna el indice del primer juego ganado por un jugador dado
+ *funcion 6 
+ * Funcion que retorna el indice del primer juego ganado por un jugador 
  * @param array $juegosTotal
  * @param string $nombreJugador
  * @return int
@@ -367,8 +341,8 @@ function cantGanados($juegosTotal, $simbolo)
 /**
  * FUNCION N°10 - funcion de comparación
  * Compara de a 2 claves para determinar cual es mayor
- * @param string $a
- * @param string $b
+ * @param array $a
+ * @param array $b
  * @return int
  */
 function comparar($a, $b) {
@@ -405,9 +379,10 @@ function ordenarColeccion($juegosTotal)
 /** Declaración de variables: */
 //DECLARAR VARIABLES
 
-//array $juegoTotal,$juego
-//string $separador
+//array $juegoTotal,$juego,$resumen
+//string $separador, $nombre
 //int $elegir,$indice,$numero
+
 
 
 /** Inicialización de variables: */
@@ -438,20 +413,21 @@ do {
             // 1) Jugar:
             $juego = jugar();
             $juegosTotal = agregarJuego($juegosTotal, $juego);
-            $indice = count($juegosTotal) - 1;
+            $indice = count($juegosTotal)-1 ;
             datosDelJuego($juegosTotal, $indice);
             // print_r($indice);
             break;
         case 2:
             // 2) Mostrar un juego:
             echo "Ingresar el número de juego entre 0 y ".(count($juegosTotal)-1)."\n";
-            $numero = solicitarNumeroEntre(0, count($juegosTotal));
+            $numero = solicitarNumeroEntre(0, count($juegosTotal)-1);
             datosDelJuego($juegosTotal, $numero);
             break;
         case 3:
              //Mostrar el primer Juego Ganador
-            $nombre = verificaJugadorExiste($juegosTotal); //pide el nombre de un jugador y verifica que exista en la colección
-            $indice = indicePrimerGanador($juegosTotal, $nombre); //almacena indice del primer juego ganado por el jugador dado
+            echo "ingrese el nombre de un jugador: ";
+            $nombreIngresado=strtoupper(trim(fgets(STDIN)));//pide el nombre de un jugador y verifica que exista en la colección
+            $indice = indicePrimerGanador($juegosTotal, $nombreIngresado); //almacena indice del primer juego ganado por el jugador dado
             if($indice != -1){
                 datosDelJuego($juegosTotal, $indice);
             }else{
